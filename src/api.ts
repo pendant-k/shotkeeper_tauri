@@ -1,12 +1,6 @@
 import { invoke } from "@tauri-apps/api/core";
 import { listen, type UnlistenFn } from "@tauri-apps/api/event";
-
-export interface FilterPath {
-    id: string;
-    name: string;
-    path: string;
-    icon: string;
-}
+import type { FilterPath } from "./types";
 
 export interface Settings {
     paths: FilterPath[];

@@ -1,6 +1,6 @@
 use std::path::Path;
 use std::sync::Mutex;
-use tauri::{AppHandle, Manager};
+use tauri::AppHandle;
 use tauri_plugin_clipboard_manager::ClipboardExt;
 
 static CURRENT_SCREENSHOT_PATH: Mutex<Option<String>> = Mutex::new(None);
@@ -60,10 +60,7 @@ pub async fn save_screenshot(
         }
     }
 
-    if let Some(popup) = app.get_webview_window("popup") {
-        let _ = popup.hide();
-    }
-    set_current_screenshot_path(None);
+    crate::window::dismiss_popup(&app);
 
     Ok(())
 }
@@ -92,10 +89,7 @@ pub async fn copy_to_clipboard(app: AppHandle) -> Result<(), String> {
     std::fs::remove_file(source).map_err(|e| format!("Failed to delete original: {}", e))?;
     println!("[Clipboard] Original file deleted: {}", current_path);
 
-    if let Some(popup) = app.get_webview_window("popup") {
-        let _ = popup.hide();
-    }
-    set_current_screenshot_path(None);
+    crate::window::dismiss_popup(&app);
 
     Ok(())
 }

@@ -167,44 +167,8 @@ fn handle_screenshot(app: &AppHandle, path: &Path) {
 }
 
 fn show_popup_at_cursor(app: &AppHandle) {
+    crate::window::center_popup_on_cursor_monitor(app, 340.0, 400.0);
     if let Some(popup) = app.get_webview_window("popup") {
-        if let Ok(cursor_pos) = popup.cursor_position() {
-            let monitors = popup.available_monitors().unwrap_or_default();
-
-            let target_monitor = monitors.iter().find(|m| {
-                let pos = m.position();
-                let size = m.size();
-                let x = cursor_pos.x as i32;
-                let y = cursor_pos.y as i32;
-                x >= pos.x
-                    && x < pos.x + size.width as i32
-                    && y >= pos.y
-                    && y < pos.y + size.height as i32
-            });
-
-            if let Some(monitor) = target_monitor {
-                let mon_pos = monitor.position();
-                let mon_size = monitor.size();
-                let scale = monitor.scale_factor();
-
-                let win_width = 340.0;
-                let win_height = 400.0;
-
-                let center_x =
-                    mon_pos.x as f64 + (mon_size.width as f64 / scale - win_width) / 2.0;
-                let center_y =
-                    mon_pos.y as f64 + (mon_size.height as f64 / scale - win_height) / 2.0;
-
-                let _ = popup.set_position(tauri::Position::Logical(
-                    tauri::LogicalPosition::new(center_x, center_y),
-                ));
-            } else {
-                let _ = popup.center();
-            }
-        } else {
-            let _ = popup.center();
-        }
-
         let _ = popup.show();
         let _ = popup.set_focus();
     }

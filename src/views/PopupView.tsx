@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 import { PencilSimple } from "@phosphor-icons/react";
 import { Button } from "../components/Button";
 import { ICON_MAP } from "../utils/icons";
-import { api, type FilterPath } from "../api";
+import { api } from "../api";
+import type { FilterPath } from "../types";
 
 export const PopupView = () => {
     const { t, i18n } = useTranslation();
@@ -14,19 +15,20 @@ export const PopupView = () => {
     const [isInputFocused, setIsInputFocused] = useState(false);
 
     useEffect(() => {
-        api.getSettings().then((settings) => {
-            if (settings.paths) setPaths(settings.paths);
-            if (settings.language) i18n.changeLanguage(settings.language);
-        });
+        const loadSettings = () => {
+            api.getSettings().then((settings) => {
+                if (settings.paths) setPaths(settings.paths);
+                if (settings.language) i18n.changeLanguage(settings.language);
+            });
+        };
+
+        loadSettings();
 
         let unlisten: (() => void) | undefined;
         api.onScreenshotTaken((dataUrl) => {
             setPreview(dataUrl);
             setFileName("");
-            api.getSettings().then((settings) => {
-                if (settings.paths) setPaths(settings.paths);
-                if (settings.language) i18n.changeLanguage(settings.language);
-            });
+            loadSettings();
         }).then((fn) => {
             unlisten = fn;
         });

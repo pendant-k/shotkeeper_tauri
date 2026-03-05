@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Folder, Trash, DotsSixVertical } from "@phosphor-icons/react";
 import { FilterPath } from "../types";
-import { IconPicker } from "./EmojiPicker";
+import { IconPicker } from "./IconPicker";
 import { ICON_MAP } from "../utils/icons";
 
 interface PathItemProps {

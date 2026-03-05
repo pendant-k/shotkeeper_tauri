@@ -1,6 +1,5 @@
 import React, {
     createContext,
-    useContext,
     useState,
     useEffect,
     ReactNode,
@@ -55,10 +54,3 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
     );
 };
 
-export const useLanguage = () => {
-    const context = useContext(LanguageContext);
-    if (!context) {
-        throw new Error("useLanguage must be used within a LanguageProvider");
-    }
-    return context;
-};

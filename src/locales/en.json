@@ -1,0 +1,43 @@
+{
+    "settings": {
+        "title": "Preferences",
+        "savedPaths": "Saved Paths",
+        "noPaths": "No paths added yet",
+        "addPath": "Add Path",
+        "language": "Language",
+        "permissionWarningTitle": "Full Disk Access Required",
+        "permissionWarningDesc": "Please allow access to detect screenshots.",
+        "openPermissions": "Open Settings",
+        "remove": "Remove",
+        "tipTitle": "Tip for faster execution",
+        "tipDesc": "Press the number keys (1-9) to save instantly.",
+        "saveSuccessTitle": "Settings Saved",
+        "saveSuccessDesc": "Your changes have been successfully applied.",
+        "limitReached": "You can only add up to 9 paths.",
+        "maxPathsReached": "Max 9 paths reached",
+        "folderNamePlaceholder": "Folder Name (e.g. Work)",
+        "selectFolderPlaceholder": "Please select a folder"
+    },
+    "header": {
+        "subtitle": "Organize your screenshots quickly into specified folders",
+        "tipTitle": "Tip for faster execution",
+        "tipBody": "Turn off macOS screenshot <1>'preview thumbnail'</1> to organize instantly.",
+        "tipCommand": "Cmd+Shift+5 → Options → Uncheck Show Floating Thumbnail"
+    },
+    "popup": {
+        "saveTo": "Save to:",
+        "copyToClipboard": "Copy to Clipboard",
+        "copied": "Copy",
+        "saved": "Save",
+        "cancel": "Cancel",
+        "openSettings": "Preferences...",
+        "filenamePlaceholder": "Enter a file name"
+    },
+    "tray": {
+        "about": "About ShotKeeper",
+        "buyMeCoffee": "Buy me a coffee ☕️",
+        "preferences": "Preferences...",
+        "permissions": "Permissions...",
+        "quit": "Quit"
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "settings": {
+        "title": "Préférences",
+        "savedPaths": "Chemins enregistrés",
+        "noPaths": "Aucun chemin ajouté",
+        "addPath": "Ajouter un chemin",
+        "language": "Langue",
+        "permissionWarningTitle": "Accès complet au disque requis",
+        "permissionWarningDesc": "Veuillez autoriser l'accès pour détecter les captures.",
+        "openPermissions": "Ouvrir les paramètres",
+        "remove": "Supprimer",
+        "tipTitle": "Astuce pour aller plus vite",
+        "tipDesc": "Appuyez sur les touches numériques (1-9) pour enregistrer instantanément.",
+        "saveSuccessTitle": "Paramètres enregistrés",
+        "saveSuccessDesc": "Vos modifications ont été appliquées avec succès.",
+        "limitReached": "Vous ne pouvez ajouter que 9 chemins.",
+        "maxPathsReached": "Max 9 chemins atteints",
+        "folderNamePlaceholder": "Nom du dossier (ex. Travail)",
+        "selectFolderPlaceholder": "Veuillez sélectionner un dossier"
+    },
+    "header": {
+        "subtitle": "Organisez vos captures d'écran rapidement dans des dossiers spécifiés",
+        "tipTitle": "Astuce pour une exécution plus rapide",
+        "tipBody": "Désactivez la <1>'vignette d'aperçu'</1> des captures d'écran macOS pour organiser instantanément.",
+        "tipCommand": "Cmd+Shift+5 → Options → Désactiver l'aperçu de la vignette"
+    },
+    "popup": {
+        "saveTo": "Enregistrer sous :",
+        "copyToClipboard": "Copier dans le presse-papiers",
+        "copied": "Copier",
+        "saved": "Enregistrer",
+        "cancel": "Annuler",
+        "openSettings": "Préférences...",
+        "filenamePlaceholder": "Entrez un nom de fichier"
+    },
+    "tray": {
+        "about": "À propos de ShotKeeper",
+        "buyMeCoffee": "Offrez-moi un café ☕️",
+        "preferences": "Préférences...",
+        "permissions": "Autorisations...",
+        "quit": "Quitter"
+    }
+}

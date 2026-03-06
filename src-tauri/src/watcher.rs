@@ -138,6 +138,18 @@ fn has_date_pattern(name: &str) -> bool {
 }
 
 fn handle_screenshot(app: &AppHandle, path: &Path) {
+    // 파일 생성 시간이 4초 이내인 경우에만 새 스크린샷으로 처리
+    if let Ok(metadata) = std::fs::metadata(path) {
+        if let Ok(created) = metadata.created() {
+            if let Ok(elapsed) = created.elapsed() {
+                if elapsed > Duration::from_secs(4) {
+                    println!("[Watcher] Skipping old file: {:?} (created {:?} ago)", path, elapsed);
+                    return;
+                }
+            }
+        }
+    }
+
     println!("[Watcher] New screenshot detected: {:?}", path);
 
     let path_str = path.to_string_lossy().to_string();

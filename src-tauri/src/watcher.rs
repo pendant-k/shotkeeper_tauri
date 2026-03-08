@@ -156,7 +156,7 @@ fn handle_screenshot(app: &AppHandle, path: &Path) {
     set_current_screenshot_path(Some(path_str));
 
     let data_url = if path.extension().and_then(|e| e.to_str()) == Some("mov") {
-        String::new()
+        "video".to_string()
     } else {
         match std::fs::read(path) {
             Ok(bytes) => {

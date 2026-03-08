@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { PencilSimple } from "@phosphor-icons/react";
+import { PencilSimple, Trash, VideoCamera } from "@phosphor-icons/react";
 import { Button } from "../components/Button";
 import { ICON_MAP } from "../utils/icons";
 import { api } from "../api";
@@ -68,6 +68,9 @@ export const PopupView = () => {
             if (e.key.toLowerCase() === "c" || e.key === "ㅊ") {
                 api.copyToClipboard();
             }
+            if (e.key.toLowerCase() === "d" || e.key === "ㅇ") {
+                api.deleteScreenshot();
+            }
             if (e.key === "Escape") {
                 handleCancel();
             }
@@ -88,6 +91,22 @@ export const PopupView = () => {
     return (
         <div ref={contentRef} className="w-[340px] overflow-hidden">
             <div className="bg-[#191919]/95 backdrop-blur-2xl p-5 flex flex-col gap-5 animate-in fade-in zoom-in duration-200">
+                {/* Preview */}
+                {preview && preview !== "video" && (
+                    <div className="rounded-xl overflow-hidden border border-white/10 -mt-1">
+                        <img
+                            src={preview}
+                            alt="Screenshot preview"
+                            className="w-full max-h-[160px] object-contain bg-black/30"
+                        />
+                    </div>
+                )}
+                {preview === "video" && (
+                    <div className="rounded-xl overflow-hidden border border-white/10 -mt-1 flex items-center justify-center h-[80px] bg-black/30">
+                        <VideoCamera size={32} weight="fill" className="text-gray-400" />
+                    </div>
+                )}
+
                 {/* Header (Draggable Area Expanded) */}
                 <div className="flex items-center justify-between px-1 mb-1 draggable cursor-move py-2 -mt-2">
                     <h2 className="text-[15px] font-bold text-gray-200 flex items-center gap-2 pointer-events-none">
@@ -172,19 +191,30 @@ export const PopupView = () => {
                 </div>
 
                 {/* Footer Actions */}
-                <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={handleCancel}
-                    className="w-full h-10"
-                >
-                    <div className="flex items-center justify-center w-full gap-2">
-                        <span>{t("popup.cancel")}</span>
-                        <div className="flex items-center justify-center h-4 px-1.5 rounded bg-black/20 text-[10px] font-bold text-white/50 border border-white/5">
-                            ESC
+                <div className="flex gap-2">
+                    <button
+                        onClick={() => api.deleteScreenshot()}
+                        className="flex items-center justify-center gap-2 h-10 px-4 rounded-xl bg-red-500/10 hover:bg-red-500/20 active:bg-red-500/30 border border-red-500/20 text-red-400 text-[13px] font-medium transition-all"
+                    >
+                        <Trash size={16} weight="bold" />
+                        <div className="flex items-center justify-center h-4 px-1.5 rounded bg-black/20 text-[10px] font-bold text-red-300/50 border border-red-500/10">
+                            D
                         </div>
-                    </div>
-                </Button>
+                    </button>
+                    <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={handleCancel}
+                        className="flex-1 h-10"
+                    >
+                        <div className="flex items-center justify-center w-full gap-2">
+                            <span>{t("popup.cancel")}</span>
+                            <div className="flex items-center justify-center h-4 px-1.5 rounded bg-black/20 text-[10px] font-bold text-white/50 border border-white/5">
+                                ESC
+                            </div>
+                        </div>
+                    </Button>
+                </div>
             </div>
         </div>
     );

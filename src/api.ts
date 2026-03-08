@@ -43,6 +43,8 @@ export const api = {
 
     copyToClipboard: (): Promise<void> => invoke("copy_to_clipboard"),
 
+    deleteScreenshot: (): Promise<void> => invoke("delete_screenshot"),
+
     onScreenshotTaken: (
         callback: (dataUrl: string) => void
     ): Promise<UnlistenFn> =>

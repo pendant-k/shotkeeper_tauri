@@ -93,3 +93,20 @@ pub async fn copy_to_clipboard(app: AppHandle) -> Result<(), String> {
 
     Ok(())
 }
+
+#[tauri::command]
+pub async fn delete_screenshot(app: AppHandle) -> Result<(), String> {
+    let current_path =
+        get_current_screenshot_path().ok_or_else(|| "No screenshot to delete".to_string())?;
+
+    let source = Path::new(&current_path);
+    if source.exists() {
+        std::fs::remove_file(source)
+            .map_err(|e| format!("Failed to delete screenshot: {}", e))?;
+        println!("[Delete] Screenshot deleted: {}", current_path);
+    }
+
+    crate::window::dismiss_popup(&app);
+
+    Ok(())
+}

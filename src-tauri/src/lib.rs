@@ -85,6 +85,7 @@ pub fn run() {
             open_permission_settings,
             screenshot::save_screenshot,
             screenshot::copy_to_clipboard,
+            screenshot::delete_screenshot,
         ])
         .setup(|app| {
             let app_handle = app.handle().clone();

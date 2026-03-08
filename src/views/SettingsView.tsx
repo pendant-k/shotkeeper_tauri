@@ -165,7 +165,7 @@ export const SettingsView = () => {
 
             <div className="max-w-3xl mx-auto p-6 md:p-10 flex flex-col h-screen">
                 {/* Global Draggable Area at very top */}
-                <div className="absolute top-0 left-0 right-0 h-6 draggable z-500" />
+                <div className="absolute top-0 left-0 right-0 h-12 draggable z-[500]" />
                 <SettingsHeader key={language} />
 
                 {/* Banner container: Permissions + Language + Tip */}

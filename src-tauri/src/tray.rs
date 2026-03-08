@@ -52,13 +52,10 @@ pub fn create_tray(app: &AppHandle, language: &str) -> Result<(), Box<dyn std::e
         .on_menu_event(move |app, event| match event.id().as_ref() {
             "about" => {
                 use tauri_plugin_dialog::DialogExt;
-                let app_clone = app.clone();
-                std::thread::spawn(move || {
-                    app_clone.dialog()
-                        .message("Copyright 2024 Pendant-K.\nAll rights reserved.\n\nKeep your screenshots organized effortlessly.")
-                        .title("ShotKeeper v0.1.0")
-                        .blocking_show();
-                });
+                app.dialog()
+                    .message("Copyright 2024 Pendant-K.\nAll rights reserved.\n\nKeep your screenshots organized effortlessly.")
+                    .title("ShotKeeper v0.1.0")
+                    .show(|_| {});
             }
             "coffee" => {
                 #[allow(deprecated)]

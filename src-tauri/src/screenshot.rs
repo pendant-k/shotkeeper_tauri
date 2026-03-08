@@ -101,9 +101,10 @@ pub async fn delete_screenshot(app: AppHandle) -> Result<(), String> {
 
     let source = Path::new(&current_path);
     if source.exists() {
-        std::fs::remove_file(source)
-            .map_err(|e| format!("Failed to delete screenshot: {}", e))?;
-        println!("[Delete] Screenshot deleted: {}", current_path);
+        trash::delete(source)
+            .map_err(|e| format!("Failed to move to trash: {}", e))?;
+        set_current_screenshot_path(None);
+        println!("[Delete] Screenshot moved to trash: {}", current_path);
     }
 
     crate::window::dismiss_popup(&app);
